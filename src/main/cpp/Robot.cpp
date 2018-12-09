@@ -25,7 +25,7 @@ class Robot : public frc::IterativeRobot {
   void TeleopInit() override {
     servo.Set(0.5);
   }
-  
+  // hi
   void TeleopPeriodic() override { 
     m_motor.Set(m_stick.GetY()); 
     servo.Set(m_stick.GetX());
