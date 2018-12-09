@@ -11,6 +11,7 @@
 #include <Servo.h>
 #include <SmartDashboard/SmartDashboard.h>
 #include <string> 
+#include <Relay.h>
 // hello world
 /**
  * This sample program shows how to control a motor using a joystick. In the
@@ -29,6 +30,12 @@ class Robot : public frc::IterativeRobot {
   void TeleopPeriodic() override { 
     m_motor.Set(m_stick.GetY()); 
     servo.Set(m_stick.GetX());
+    if (m_stick.GetTrigger()){
+      relay.Set(frc::Relay::Value::kForward);
+    } else{
+      relay.Set(frc::Relay::Value::kReverse);
+    }
+    
     SmartDashboard::PutString("DigitalInput 0: ", std::to_string(m_stick.GetY()));
   }
 
@@ -36,6 +43,8 @@ class Robot : public frc::IterativeRobot {
   frc::Joystick m_stick{0};
   frc::Talon m_motor{0};
   frc::Servo servo{2};
+  frc::Relay relay{0};
+  
 };
 
 START_ROBOT_CLASS(Robot)
