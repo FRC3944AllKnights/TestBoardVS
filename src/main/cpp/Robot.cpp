@@ -10,7 +10,7 @@
 #include <Talon.h>
 #include <Servo.h>
 #include <SmartDashboard/SmartDashboard.h>
-#include <string> 
+#include <string>
 
 /**
  * This sample program shows how to control a motor using a joystick. In the
@@ -23,12 +23,12 @@
 class Robot : public frc::IterativeRobot {
  public:
   void TeleopInit() override {
-    servo.Set(0.5);
+    servo.Set(0.5); //sets the servo to 90 degrees
   }
   
   void TeleopPeriodic() override { 
-    m_motor.Set(m_stick.GetY()); 
-    servo.Set(m_stick.GetX());
+    m_motor.Set(m_stick.GetY()); //sets the motor to the joystick's Y value
+    servo.Set(m_stick.GetX());  //sets the servo to the joystik's X value
     SmartDashboard::PutString("DigitalInput 0: ", std::to_string(m_stick.GetY()));
   }
 
