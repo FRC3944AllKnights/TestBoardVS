@@ -31,9 +31,9 @@ class Robot : public frc::IterativeRobot {
     m_motor.Set(m_stick.GetY()); 
     servo.Set(m_stick.GetX());
     if (m_stick.GetTrigger()){
-      relay.Set(frc::Relay::Value::kForward);
+      relay.Set(frc::Relay::Value::kOn);
     } else{
-      relay.Set(frc::Relay::Value::kReverse);
+      relay.Set(frc::Relay::Value::kOff);
     }
     
     SmartDashboard::PutString("DigitalInput 0: ", std::to_string(m_stick.GetY()));
@@ -43,7 +43,7 @@ class Robot : public frc::IterativeRobot {
   frc::Joystick m_stick{0};
   frc::Talon m_motor{0};
   frc::Servo servo{2};
-  frc::Relay relay{0};
+  frc::Relay relay{0, frc::Relay::Direction::kForwardOnly};
   
 };
 
